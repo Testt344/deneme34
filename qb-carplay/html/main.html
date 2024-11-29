@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Carplay</title>
+    <meta name="description" content="Carplay">
+
+    <script src="jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
+
+    <script src="https://unpkg.com/@tabler/core@1.0.0-beta3/dist/js/tabler.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta3/dist/css/tabler.min.css">
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://preview.tabler.io/dist/css/demo.min.css?1657267040" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+</head>
+
+<body id="main_body" class="antialiased" style="overflow-x: hidden; overflow-y: hidden;">
+    <div id="main_content" class="wrapper" style="overflow-x: hidden; overflow-y: hidden; width: 100%; height: 100%;">
+        
+    </div>
+    <div id="waypoint_content" hidden>
+        <div id="waypoint_div_position" class="" style="overflow-y: hidden; overflow-x: hidden; width: 15%;">
+            <div class="card mb-1"
+                style="background-color: rgba(var(--navigator-background-color), 0.75); border-radius: 20px; transition: all 1.2s cubic-bezier(0.57, 0.13, 0.18, 0.98) 0s;"
+                id="waypoint_card_1">
+                <div class="card-body" style="padding: 0.5rem 0.25rem;">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3"
+                            style="margin-left: 1rem; transition: all 0.2s cubic-bezier(0.57, 0.13, 0.18, 0.98) 0s;"
+                            id="main_waypoint_direction">
+
+                        </div>
+                        <div>
+                            <h3 class="lh-1"
+                                style="margin-bottom: 0.05rem; color: #e7e7e7; transition: all 0.2s cubic-bezier(0.57, 0.13, 0.18, 0.98) 0s;"
+                                id="waypoint_current_street"></h3>
+                            <small style="color: rgb(var(--navigator-text-color));">Street</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card"
+                style="background-color: rgba(var(--navigator-background-color), 0.75); border-radius: 20px; transition: all 1.2s cubic-bezier(0.57, 0.13, 0.18, 0.98) 0s;"
+                id="waypoint_card_2">
+                <div class="card-body" style="padding: 0.5rem 0.25rem;">
+                    <div class="d-flex align-items-center" style="display: inline !important;">
+                        <div class="mb-1">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="subheader"
+                                        style="font-size: 1.25rem; color: #e7e7e7; transition: all 0.2s cubic-bezier(0.57, 0.13, 0.18, 0.98) 0s;"
+                                        id="main_waypoint_time"></div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="subheader"
+                                        style="font-size: 1.25rem; color: #e7e7e7; transition: all 0.2s cubic-bezier(0.57, 0.13, 0.18, 0.98) 0s;"
+                                        id="main_waypoint_avg_speed"></div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="subheader"
+                                        style="font-size: 1.25rem; color: #e7e7e7; transition: all 0.2s cubic-bezier(0.57, 0.13, 0.18, 0.98) 0s;"
+                                        id="main_waypoint_distance"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="subheader"
+                                    style="font-size: .725rem; color: rgb(var(--navigator-text-color));">Min</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="subheader"
+                                    style="font-size: .725rem; color: rgb(var(--navigator-text-color));">Avg Speed
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="subheader"
+                                    style="font-size: .725rem; color: rgb(var(--navigator-text-color));">Km</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var changed = false
+        const position = { x: 0, y: 0 }
+
+
+        interact('.resize-drag')
+        .draggable({
+            inertia: true,
+            onmove: window.dragMoveListener,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ]
+        })
+        .resizable({
+            preserveAspectRatio: false,
+            edges: { left: true, right: true, bottom: true, top: true },
+            modifiers: [
+                interact.modifiers.restrictSize({
+                    min: { width: 440, height: 460 },
+                    max: { width: 1124, height: 704 }
+                })
+            ]
+        })
+        .on('resizemove', function (event) {
+            var target = event.target,
+                x = (parseFloat(target.getAttribute('data-x')) || 0),
+                y = (parseFloat(target.getAttribute('data-y')) || 0);
+            
+            // update the element's style
+            target.style.width  = event.rect.width + 'px';
+            target.style.height = event.rect.height + 'px';
+
+            // translate when resizing from top or left edges
+            x += event.deltaRect.left;
+            y += event.deltaRect.top;
+
+            target.style.webkitTransform = target.style.transform =
+                'translate(' + x + 'px,' + y + 'px)';
+
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        });
+
+        function dragMoveListener (event) {
+            var target = event.target,
+                // keep the dragged position in the data-x/data-y attributes
+                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // translate the element
+            target.style.webkitTransform =
+            target.style.transform =
+            'translate(' + x + 'px, ' + y + 'px)';
+
+            // update the posiion attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+    </script>
+</body>
+
+
+</html>

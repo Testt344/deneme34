@@ -1,0 +1,322 @@
+/* ! keep the colors in this style ! 32, 107, 196*/
+:root {
+    --main-color: 66, 153, 225;
+    --dark-color: 12, 41, 77;
+    --navigator-text-color: 66, 153, 225;
+    --navigator-background-color: 12, 41, 77;
+}
+
+body,
+html {
+    height: 100%;
+    overflow: auto;
+    background: transparent;
+}
+
+.tablet {
+    width: 60%;
+    height: 65%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #0a0a0a;
+    /* background-image: url("./img/wallpaper.jpg"); */
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    color: #f0f0f0;
+    border-radius: 40px;
+    border: 15px solid rgb(19, 19, 19);
+    box-sizing: border-box;
+    user-select: none;
+    cursor: default;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.top-left {
+    position: absolute!important;
+    top: 0!important;
+    left: 0!important;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.top-middle {
+    position: absolute!important;
+    top: 0!important;
+    left: 50%!important;
+    transform: translateX(-50%)!important;
+    margin-top: 5px;
+}
+
+.top-right {
+    position: absolute!important;
+    top: 0!important;
+    right: 0!important;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.middle-left {
+    position: absolute!important;
+    top: 50% !important;
+    left: 0!important;
+    transform: translateY(-50%)!important;
+    margin-left: 5px;
+}
+
+.middle-middle {
+    position: absolute!important;
+    top: 50% !important;
+    left: 50%!important;
+    transform: translate(-50%,-50%)!important;
+}
+
+.middle-right {
+    position: absolute!important;
+    top: 50% !important;
+    right: 0!important;
+    transform: translateY(-50%)!important;
+    margin-right: 5px;
+}
+
+.bottom-left {
+    position: absolute!important;
+    bottom: 0!important;
+    left: 0!important;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.bottom-middle {
+    position: absolute!important;
+    bottom: 0!important;
+    left: 50%!important;
+    transform: translateX(-50%)!important;
+    margin-bottom: 5px;
+}
+
+.bottom-right {
+    position: absolute!important;
+    bottom: 0!important;
+    right: 0!important;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+
+.title-color,
+.dropdown-menu {
+    color: rgb(243, 243, 243);
+}
+
+.col-md-3 {
+    padding-top: 15px;
+}
+
+.text-main {
+    color: rgb(var(--main-color));
+}
+
+.text-dark {
+    color: rgb(var(--dark-color));
+}
+
+.card,
+.dropdown-menu {
+    background-color: #383838e7;
+    border-radius: 30px;
+}
+
+.btn-ghost-primary:hover {
+    background-color: rgb(var(--main-color));
+}
+
+.btn-active {
+    background-color: rgb(var(--main-color));
+}
+
+tr:hover {
+    background-color: #616161;
+}
+
+td {
+    color: #f0f0f0;
+}
+
+.title-center {
+    text-align: center;
+}
+
+.div-center {
+    text-align: center;
+}
+
+.navbar-dark {
+    background-color: #505050;
+}
+
+.active1 {
+    background-color: #4c77b871;
+    font-weight: 550;
+}
+
+.mark {
+    padding: .1675em;
+    background-color: #6b6b6bcc;
+    border-radius: 5px;
+}
+
+.box {
+    box-sizing: border-box;
+    border: 30px solid transparent;
+    background-clip: padding-box;
+    width: 20.0%;
+}
+
+.img-icon {
+    border-radius: 5px;
+    border: 20px solid transparent;
+}
+
+.right-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+}
+
+@media (min-width: 992px) {
+    .navbar-vertical.navbar-expand-lg {
+        width: 7rem;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .navbar-expand-lg.navbar-vertical~.navbar,
+    .navbar-expand-lg.navbar-vertical~.page-wrapper {
+        margin-left: 7rem;
+    }
+}
+
+.main-menu-icons {
+    height: 6rem;
+}
+
+.navbar-brand-image:hover {
+    opacity: 0.8;
+}
+
+#main_speedometer > .speed-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+#main_speedometer > h3 {
+    position: absolute;
+    left: 50%;
+    top: 66%;
+    transform: translate(-50%, -50%);
+    height: 2.5rem;
+}
+
+
+.active2 {
+    background-color: #4c77b871;
+    font-weight: 550;
+    border-radius: 15px;
+}
+
+.contacts-center {
+    display: flex;
+    align-items: center;
+}
+
+.contacts-center>a {
+    color: #fff;
+    font-weight: 550;
+}
+
+.list-group-item {
+    background-color: rgb(74, 74, 74);
+    border-radius: 15px !important;
+    margin-bottom: 0.5rem;
+    border: 0;
+}
+
+.music-queue-group-item:hover {
+    text-decoration: none;
+    cursor: default !important;
+}
+
+.list-group-item:hover {
+    background-color: rgb(105, 105, 105);
+    border-radius: 15px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.list-group-item > a:hover {
+    text-decoration: none;
+}
+
+.action-icons {
+    height: 5rem; 
+    background-color:rgb(100 100 100); 
+    border-radius: 10px; 
+    border: 5px solid rgb(100 100 100); 
+    margin-bottom: 0.5rem;
+    -webkit-transition: background-color 500ms linear, border 500ms linear;
+    -ms-transition: background-color 500ms linear, border 500ms linear;
+    transition: background-color 500ms linear, border 500ms linear;
+}
+
+.progress-bar {
+    background-color: rgb(var(--main-color));
+}
+
+.action-icons-active {
+    height: 5rem; 
+    background-color:rgb(235, 235, 235); 
+    border-radius: 10px; 
+    border: 5px solid rgb(235, 235, 235); 
+    margin-bottom: 0.5rem;
+    -webkit-transition: background-color 500ms linear, border 500ms linear;
+    -ms-transition: background-color 500ms linear, border 500ms linear;
+    transition: background-color 500ms linear, border 500ms linear;
+}
+
+.action-icons-active:hover {
+    background-color:rgb(206, 206, 206); 
+    border: 5px solid rgb(206, 206, 206); 
+}
+
+.action-icons:hover {
+    background-color:rgb(145, 145, 145);
+    border: 5px solid rgb(145, 145, 145); 
+}
+
+.nav-link:hover {
+    cursor: pointer;
+}
